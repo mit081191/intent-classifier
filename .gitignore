@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+# Raw datasets - will be versioned using DVC
+data/raw/*.csv
 # Distribution / packaging
 .Python
 build/
