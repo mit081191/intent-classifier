@@ -7,6 +7,20 @@ __pycache__/
 *.so
 # Raw datasets - will be versioned using DVC
 data/raw/*.csv
+
+# PyCharm / IntelliJ
+.idea/
+
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
 # Distribution / packaging
 .Python
 build/
