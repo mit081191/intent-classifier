@@ -8,8 +8,10 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
+    "cryptography<46",
     "dvc>=3.67.1",
     "pandas>=3.0.5",
+    "pyopenssl>=24",
     "scikit-learn>=1.9.0",
 ]
 
