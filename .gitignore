@@ -14,6 +14,10 @@ data/raw/*.csv
 # Python virtual environment
 .venv/
 
+# MLflow local tracking data
+mlruns/
+mlflow.db
+
 # Python cache
 __pycache__/
 *.py[cod]

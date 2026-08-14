@@ -6,13 +6,20 @@ readme = "README.md"
 authors = [
     { name = "mitul.solanki", email = "mitulozil@gmail.com" }
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.14"
 dependencies = [
+    "accelerate>=1.14.0",
     "cryptography<46",
+    "datasets>=5.0.1",
     "dvc>=3.67.1",
-    "pandas>=3.0.5",
+    "ipykernel>=7.3.0",
+    "matplotlib>=3.11.1",
+    "mlflow>=3,<4",
+    "pandas>=2.2,<3",
     "pyopenssl>=24",
     "scikit-learn>=1.9.0",
+    "torch>=2.13.0",
+    "transformers>=5.15.0",
 ]
 
 [project.scripts]
