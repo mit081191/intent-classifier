@@ -8,6 +8,8 @@ __pycache__/
 # Raw datasets - will be versioned using DVC
 data/raw/*.csv
 
+# Ignore only generated model artifacts at project root
+/models/
 # PyCharm / IntelliJ
 .idea/
 
