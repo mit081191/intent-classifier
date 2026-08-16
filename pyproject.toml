@@ -12,6 +12,7 @@ dependencies = [
     "cryptography<46",
     "datasets>=5.0.1",
     "dvc>=3.67.1",
+    "fastapi>=0.141.1",
     "ipykernel>=7.3.0",
     "matplotlib>=3.11.1",
     "mlflow>=3,<4",
@@ -20,6 +21,7 @@ dependencies = [
     "scikit-learn>=1.9.0",
     "torch>=2.13.0",
     "transformers>=5.15.0",
+    "uvicorn>=0.52.3",
 ]
 
 [project.scripts]
@@ -28,3 +30,8 @@ intent-classifier = "intent_classifier:main"
 [build-system]
 requires = ["uv_build>=0.12.3,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

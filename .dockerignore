@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Local virtual environment
+.venv/
+
+# IDE files
+.idea/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Local MLflow tracking data
+mlruns/
+mlflow.db
+
+# Raw and intermediate datasets are not required by the API
+data/
+
+# Training checkpoints are not required in production
+models/distilbert_training/
+models/distilbert_final/

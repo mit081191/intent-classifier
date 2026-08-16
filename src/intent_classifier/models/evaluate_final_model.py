@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import joblib
 import mlflow
 import mlflow.sklearn
 import pandas as pd
@@ -130,7 +130,43 @@ with mlflow.start_run(
 
     print("Training completed.")
 
+    # ---------------------------------------------------------
+    # Save the trained final pipeline for application inference
+    # ---------------------------------------------------------
 
+    # Store generated model artifacts under the root-level
+    # models directory.
+    MODEL_DIR = PROJECT_ROOT / "models"
+    MODEL_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    FINAL_MODEL_FILE = (
+            MODEL_DIR / "linear_svm_pipeline.joblib"
+    )
+
+    # Save the COMPLETE sklearn pipeline.
+    #
+    # This contains:
+    #
+    # clean_text()
+    #      ↓
+    # TF-IDF vectorizer
+    #      ↓
+    # Linear SVM
+    #
+    # Therefore, our inference application can later provide
+    # raw customer text directly to pipeline.predict().
+    joblib.dump(
+        final_pipeline,
+        FINAL_MODEL_FILE,
+    )
+
+    print(
+        f"\nFinal model saved to: "
+        f"{FINAL_MODEL_FILE}"
+    )
     # -----------------------------------------------------
     # 8. Predict on the untouched TEST dataset
     # -----------------------------------------------------
