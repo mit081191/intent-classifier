@@ -1397,15 +1397,12 @@ The project therefore uses the assignment's new-language drift scenario to demon
 
 This project uses a customer-service intent-classification dataset obtained from Kaggle for academic work. The dataset provides predefined training, validation, and testing splits containing customer utterances and intent labels.
 
-Before final submission, add the exact Kaggle dataset title, author/owner, and dataset page URL used by the group here so that the source is cited precisely.
+## Dataset Reference
 
-Example citation format:
-
-```text
-Dataset: <exact Kaggle dataset title>
-Author/Owner: <dataset author>
-Source: <exact Kaggle dataset URL>
-Accessed: <date>
+- **Dataset:** customer-support-intent-dataset
+- **Author/Owner:** Tara Prasad Pandey
+- **Source:** Kaggle – Customer Support Intent Dataset
+- **Accessed:** 18 August 2026
 ```
 
 ## Open-Source Libraries and Tools
