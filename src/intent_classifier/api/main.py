@@ -5,7 +5,9 @@ from intent_classifier.api.schemas import (
     PredictionResponse,
 )
 from intent_classifier.inference.predict import predict_intent
-
+from intent_classifier.monitoring.prediction_logger import (
+    log_prediction,
+)
 
 # ---------------------------------------------------------
 # 1. Create FastAPI application
@@ -55,6 +57,12 @@ def predict(request: PredictionRequest):
         request.text
     )
 
+    # Store the prediction so that recent production
+    # traffic can later be analysed for drift.
+    log_prediction(
+        text=request.text,
+        predicted_intent=predicted_intent,
+    )
     # Return the prediction using the response schema.
     return PredictionResponse(
         intent=predicted_intent

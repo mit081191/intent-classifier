@@ -1,0 +1,136 @@
+utterance,intent
+lemme cancel this order asap,cancel_order
+i wanna scrap my latest order rn,cancel_order
+pls stop that order before it ships,cancel_order
+can u cancel the purchase i just made,cancel_order
+need this order killed asap,cancel_order
+can i tweak something in my order,change_order
+need to modify the stuff i ordered,change_order
+i wanna update my order details,change_order
+can u edit my current purchase,change_order
+made a mistake in my order need to change it,change_order
+need to change where my order is going,change_shipping_address
+wrong address on my order pls fix it,change_shipping_address
+can u update my delivery addr,change_shipping_address
+ship it to a different place instead,change_shipping_address
+i moved can i change the shipping address,change_shipping_address
+do i get charged if i cancel,check_cancellation_fee
+any fee for cancelling this order,check_cancellation_fee
+how much will cancellation cost me,check_cancellation_fee
+is there a cancel penalty,check_cancellation_fee
+will u charge me for backing out of the order,check_cancellation_fee
+can u check if my invoice is right,check_invoice
+need to verify this bill,check_invoice
+something looks off on my invoice,check_invoice
+can i review the invoice details,check_invoice
+pls help me double check my bill,check_invoice
+what ways can i pay,check_payment_methods
+do u take upi or cards,check_payment_methods
+which payment options work here,check_payment_methods
+can i pay another way,check_payment_methods
+what payment methods do u support,check_payment_methods
+whats the refund rule here,check_refund_policy
+am i allowed to get my money back,check_refund_policy
+what are the conditions for a refund,check_refund_policy
+how does your money back policy work,check_refund_policy
+when am i eligible for reimbursement,check_refund_policy
+this service is awful i wanna complain,complaint
+need to raise a complaint rn,complaint
+where do i report bad service,complaint
+im really unhappy with this experience,complaint
+i want to file a grievance,complaint
+how do i reach customer support,contact_customer_service
+need the support desk contact,contact_customer_service
+where can i talk to customer service,contact_customer_service
+pls give me support contact details,contact_customer_service
+how do i get in touch with help desk,contact_customer_service
+lemme talk to a real person,contact_human_agent
+need a human not a bot,contact_human_agent
+connect me to an agent pls,contact_human_agent
+can i speak with someone live,contact_human_agent
+get me a real support rep,contact_human_agent
+how do i make a new acct,create_account
+wanna sign up for an account,create_account
+need to register a new profile,create_account
+can u help me create my login,create_account
+how do i open a fresh account,create_account
+how do i nuke my account,delete_account
+delete my acct pls,delete_account
+i want my profile gone,delete_account
+how can i permanently remove my account,delete_account
+close and erase my account asap,delete_account
+what shipping choices do i have,delivery_options
+can i pick express delivery,delivery_options
+what delivery methods are available,delivery_options
+do u offer same day shipping,delivery_options
+show me the shipping options,delivery_options
+how long does delivery usually take,delivery_period
+whats the expected delivery time,delivery_period
+how many days till it gets here,delivery_period
+when should the package arrive normally,delivery_period
+what is the usual shipping duration,delivery_period
+need to edit my profile info,edit_account
+how do i update account details,edit_account
+can i change stuff on my profile,edit_account
+where do i modify my personal info,edit_account
+i wanna edit the data in my acct,edit_account
+send me my invoice pls,get_invoice
+where can i download the bill,get_invoice
+need a copy of my invoice,get_invoice
+how do i get the receipt for my order,get_invoice
+can u give me the invoice,get_invoice
+need my money back asap,get_refund
+i want a refund for this,get_refund
+can u reimburse me,get_refund
+please return my payment,get_refund
+want my cash back for the order,get_refund
+sign me up for your newsletter,newsletter_subscription
+i wanna get your email updates,newsletter_subscription
+subscribe me to the mailing list,newsletter_subscription
+how do i join the newsletter,newsletter_subscription
+add me to promo emails pls,newsletter_subscription
+my payment keeps failing,payment_issue
+cant pay for the order,payment_issue
+card payment not going through,payment_issue
+payment is stuck pls help,payment_issue
+im getting an error when i try to pay,payment_issue
+how do i buy this thing,place_order
+wanna place an order,place_order
+how can i purchase these items,place_order
+help me order this product,place_order
+where do i submit my order,place_order
+cant get into my acct forgot the password,recover_password
+need to reset my pwd,recover_password
+forgot my login password help,recover_password
+how do i recover my password,recover_password
+locked out need a new password,recover_password
+signup isnt working for me,registration_problems
+getting an error while registering,registration_problems
+cant finish account registration,registration_problems
+registration page keeps failing,registration_problems
+why wont it let me sign up,registration_problems
+where can i leave a review,review
+wanna rate my experience,review
+how do i post feedback as a review,review
+can i review the service,review
+i want to write a product review,review
+how do i add my delivery addr,set_up_shipping_address
+need to set a shipping address,set_up_shipping_address
+where can i enter the address for deliveries,set_up_shipping_address
+help me add a new shipping location,set_up_shipping_address
+how do i save my address for orders,set_up_shipping_address
+how do i swap to another acct,switch_account
+need to switch users,switch_account
+can i log into a different account,switch_account
+wanna change to my other profile,switch_account
+how do i move to another user account,switch_account
+where tf is my package,track_order
+can u tell me where my order is rn,track_order
+need an update on my shipment,track_order
+whats happening with my order,track_order
+track my package pls,track_order
+refund still ain't hit my account,track_refund
+wheres my refund rn,track_refund
+refund status pls,track_refund
+still waiting on that money back,track_refund
+any update on my reimbursement,track_refund
