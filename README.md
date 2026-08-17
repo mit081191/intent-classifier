@@ -1,3 +1,4 @@
+````
 # Customer Intent Classification
 
 An end-to-end Machine Learning and MLOps project for classifying customer-service utterances into predefined intent categories.
@@ -1349,3 +1350,110 @@ NO_ACTION / REVIEW / RETRAIN
 ```
 
 The final result is therefore not only a trained text-classification model, but an end-to-end example of how a machine-learning model can be **trained, evaluated, tracked, deployed, tested, monitored, and prepared for future retraining**.
+````
+---
+
+# 34. Dataset Versioning with DVC
+
+The project requirement includes dataset versioning. **DVC (Data Version Control)** was introduced to track dataset versions separately from source code while keeping lightweight DVC metadata under Git version control.
+
+The intended workflow was:
+
+```text
+Raw CSV datasets
+      ↓
+DVC tracking
+      ↓
+.dvc metadata committed to Git
+      ↓
+Dataset contents stored outside normal Git history
+```
+
+A Google Drive DVC remote was also attempted so that team members could retrieve the same dataset version. However, authentication to the remote was blocked by institutional OAuth restrictions in the development environment.
+
+As a result, the project retains the DVC/versioning approach and metadata, but collaborators currently obtain the source CSV files separately and place them under:
+
+```text
+data/raw/
+```
+
+This limitation should be distinguished from the generated drift dataset under `data/drift/`, which is part of the project implementation and can be version-controlled with the source code.
+
+---
+
+# 35. Alignment with the Assignment Drift Requirement
+
+The assignment asks the project to simulate concept drift as language and topics evolve. The implemented experiment changes customer language using slang, abbreviations, paraphrases, typos, and informal phrasing while keeping the existing 27 intent definitions unchanged.
+
+Technically, this primarily represents **input/language drift**, meaning the distribution of incoming text `P(X)` changes. Pure **concept drift** would mean that the relationship between an utterance and its correct label `P(Y|X)` changes, for example because the business redefines, merges, or introduces support intents.
+
+The project therefore uses the assignment's new-language drift scenario to demonstrate how changed production inputs can lead to performance degradation and how a production monitoring framework can detect the change, request review, and recommend retraining when sufficient evidence is available.
+
+---
+
+# 36. References and Acknowledgements
+
+## Dataset
+
+This project uses a customer-service intent-classification dataset obtained from Kaggle for academic work. The dataset provides predefined training, validation, and testing splits containing customer utterances and intent labels.
+
+Before final submission, add the exact Kaggle dataset title, author/owner, and dataset page URL used by the group here so that the source is cited precisely.
+
+Example citation format:
+
+```text
+Dataset: <exact Kaggle dataset title>
+Author/Owner: <dataset author>
+Source: <exact Kaggle dataset URL>
+Accessed: <date>
+```
+
+## Open-Source Libraries and Tools
+
+The implementation uses open-source software including:
+
+- Python
+- pandas
+- NumPy
+- scikit-learn
+- PyTorch
+- Hugging Face Transformers
+- Hugging Face Datasets
+- Accelerate
+- MLflow
+- FastAPI
+- Uvicorn
+- Pydantic
+- joblib
+- pytest
+- Docker
+- DVC
+- uv
+
+These libraries provide the underlying numerical computing, NLP, machine-learning, experiment-tracking, serving, testing, containerization, dependency-management, and data-versioning capabilities used by the project. The project-specific preprocessing, training workflows, model comparison, API integration, drift simulation, monitoring logic, and retraining decision framework were implemented for this academic project.
+
+---
+
+# 37. Requirement Coverage
+
+| Assignment Requirement | Project Implementation |
+|---|---|
+| Week 1 - ingest raw text | Train, validation, and test customer-service CSV datasets |
+| Clean/tokenize | Lightweight text normalization; transformer tokenization for DistilBERT |
+| TF-IDF/embeddings | TF-IDF unigram + bigram pipeline and DistilBERT contextual representations |
+| Version dataset | DVC introduced; remote sharing limited by institutional OAuth restrictions |
+| Week 2 - classical ML | Logistic Regression and Linear SVM |
+| Fine-tuned transformer | DistilBERT fine-tuned for 27-class intent classification |
+| Track experiments | MLflow experiment `customer-intent-classification` |
+| Week 3 - package model | Complete Linear SVM sklearn pipeline serialized with joblib |
+| REST API | FastAPI `/health` and `/predict` endpoints |
+| Handle malformed/empty input | Pydantic/API validation and automated API tests |
+| Package application | Dockerfile and `.dockerignore` |
+| Week 4 - log predictions | Runtime `prediction_log.csv` |
+| Simulate changing language/topics | 135-example controlled slang/paraphrase drift dataset |
+| Monitor performance | Accuracy and Macro F1 compared with final test baseline |
+| Detect drift without labels | TF-IDF/cosine-similarity input monitoring and TVD prediction monitoring |
+| Design retraining triggers | `NO_ACTION`, `REVIEW`, and `RETRAIN` policy with unit tests |
+| Version-control code incrementally | Weekly implementation committed through Git |
+| Justify design decisions | Week-wise documentation plus this README |
+
