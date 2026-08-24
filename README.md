@@ -1,4 +1,3 @@
-````
 # Customer Intent Classification
 
 An end-to-end Machine Learning and MLOps project for classifying customer-service utterances into predefined intent categories.
@@ -62,6 +61,88 @@ The project also addresses an important production ML problem:
 > What happens when customer language changes after the model has been deployed?
 
 For this reason, the project includes a monitoring framework for detecting language/input drift, prediction-distribution drift, and model-performance degradation.
+
+## System Architecture
+
+The project follows an end-to-end ML/MLOps architecture covering data preparation, model development, deployment, and post-deployment monitoring.
+
+```mermaid
+flowchart TD
+    A["Kaggle Customer Support Intent Dataset"] --> B["Data Validation & EDA"]
+    B --> C["Lightweight Text Preprocessing"]
+
+    C --> D["TF-IDF<br/>Unigrams + Bigrams"]
+    C --> E["DistilBERT Tokenizer"]
+
+    D --> F["Logistic Regression"]
+    D --> G["Linear SVM"]
+    E --> H["Fine-tuned DistilBERT"]
+
+    F --> I["MLflow Experiment Tracking"]
+    G --> I
+    H --> I
+
+    I --> J["Model Comparison & Selection"]
+    J --> K["Selected Model:<br/>TF-IDF + Linear SVM"]
+
+    K --> L["Untouched Test Evaluation"]
+    L --> M["Serialize Complete Pipeline<br/>linear_svm_pipeline.joblib"]
+
+    M --> N["Inference Layer<br/>predict_intent()"]
+    N --> O["FastAPI REST Service<br/>/health + /predict"]
+    O --> P["Docker Container"]
+
+    O --> Q["Prediction Logging<br/>prediction_log.csv"]
+    Q --> R["Monitoring Framework"]
+
+    S["Reference Training / Validation Data"] --> R
+    T["Recent / Drift Traffic"] --> R
+
+    R --> U["Input-Language Drift<br/>TF-IDF + Cosine Similarity"]
+    R --> V["Prediction Distribution Drift<br/>Total Variation Distance"]
+    R --> W["Performance Monitoring<br/>Accuracy + Macro F1<br/>when labels are available"]
+
+    U --> X["Monitoring Decision Logic"]
+    V --> X
+    W --> X
+
+    X --> Y["NO_ACTION"]
+    X --> Z["REVIEW"]
+    X --> AA["RETRAIN"]
+
+    AA --> AB["Collect / Review Recent Labels"]
+    AB --> AC["Retrain Candidate Models"]
+    AC --> I
+```
+
+### Architecture Flow
+
+```text
+Raw text data
+    ↓
+Validation + EDA
+    ↓
+Feature engineering / transformer tokenization
+    ↓
+Model training
+    ↓
+MLflow comparison
+    ↓
+Linear SVM selected
+    ↓
+Final test evaluation
+    ↓
+Saved sklearn pipeline
+    ↓
+FastAPI + Docker
+    ↓
+Prediction logging
+    ↓
+Input + Prediction + Performance monitoring
+    ↓
+NO_ACTION / REVIEW / RETRAIN
+```
+
 
 ---
 
@@ -181,7 +262,7 @@ intent-classifier/
 │       │
 │       ├── models/
 │       │   ├── train_baseline.py
-│       │   ├── train_linear_svm.py
+│       │   ├── train_svm.py
 │       │   ├── train_distilbert.py
 │       │   ├── analyze_distilbert.py
 │       │   ├── compare_models.py
@@ -248,7 +329,7 @@ uv run python <path-to-script>
 For example:
 
 ```bash
-uv run python src/intent_classifier/models/train_linear_svm.py
+uv run python src/intent_classifier/models/train_svm.py
 ```
 
 ---
@@ -1075,7 +1156,7 @@ uv run python <path-to-file>
 Example:
 
 ```bash
-uv run python src/intent_classifier/models/train_linear_svm.py
+uv run python src/intent_classifier/models/train_svm.py
 ```
 
 ## Start MLflow
@@ -1350,7 +1431,6 @@ NO_ACTION / REVIEW / RETRAIN
 ```
 
 The final result is therefore not only a trained text-classification model, but an end-to-end example of how a machine-learning model can be **trained, evaluated, tracked, deployed, tested, monitored, and prepared for future retraining**.
-````
 ---
 
 # 34. Dataset Versioning with DVC
@@ -1401,7 +1481,7 @@ This project uses a customer-service intent-classification dataset obtained from
 
 - **Dataset:** customer-support-intent-dataset
 - **Author/Owner:** Tara Prasad Pandey
-- **Source:** Kaggle – Customer Support Intent Dataset
+- **Source:** https://www.kaggle.com/datasets/scodepy/customer-support-intent-dataset
 - **Accessed:** 18 August 2026
 ```
 
@@ -1453,4 +1533,3 @@ These libraries provide the underlying numerical computing, NLP, machine-learnin
 | Design retraining triggers | `NO_ACTION`, `REVIEW`, and `RETRAIN` policy with unit tests |
 | Version-control code incrementally | Weekly implementation committed through Git |
 | Justify design decisions | Week-wise documentation plus this README |
-
